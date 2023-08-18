@@ -20,6 +20,10 @@ io.on("connection", (socket) => {
         // socket.emit("serverMessage", {...data, type:"serverMessage"});
         io.to("chat_group").emit("serverMessage", {...data, type:"serverMessage"});
     })
+    socket.on("meetingAlert", (data) => {
+        console.log("Meeting Type: ", data);
+        io.to("chat_group").emit("Alert", {data});
+    })
 });
 
 httpServer.listen(3000);
